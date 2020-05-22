@@ -17,10 +17,10 @@ setMTEXpref('zAxisDirection','intoPlane');
 %% Specify File Names
 
 % path to files
-pname = '';
+pname = 'Data/';
 
 % which files to be imported
-fname = [pname ''];
+fname = [pname 'Heating Run 1 Specimen 1 HR 970C dynamic 2um.cpr'];
 
 %% Import the Data
 
@@ -39,8 +39,16 @@ TD = vector3d.Y;
 ND = vector3d.Z;
 
 %% ebsd IPF
+% Plotting a hexagonal map only requires the ebsd map
+IPF_hex(ebsd, 'Ti-Hex', 'x')
+IPF_hex(ebsd, 'Titanium cubic', 'x')
 
 %% grains IPF 
+
+%Plotting a cubic map requires caluclating the grains first.
+[grains, ebsd.grainId, ebsd.mis2mean] = calcGrains(ebsd,'angle',10*degree);
+IPF_cubic(grains, 'Ti-Hex', 'x')
+IPF_cubic(grains, 'Titanium cubic', 'x')
 
 %% Pole Figure
 

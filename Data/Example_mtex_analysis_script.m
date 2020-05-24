@@ -16,17 +16,10 @@ setMTEXpref('zAxisDirection','intoPlane');
 %% Specify File Names
 
 % path to files
-<<<<<<< Updated upstream
-pname = '';
-
-% which files to be imported
-fname = [pname ''];
-=======
 pname = '/Users/nicholasbyres/Documents/MATLAB/My Matlab/Lightform_Mtex/Data/';
 
 % which files to be imported
 fname = [pname 'Sample.cpr'];
->>>>>>> Stashed changes
 
 %% Import the Data
 
@@ -45,14 +38,9 @@ TD = vector3d.Y;
 ND = vector3d.Z;
 
 %% ebsd IPF
-<<<<<<< Updated upstream
-
-%% grains IPF 
-
-%% Pole Figure
-=======
 % pass the following arguments: ebsd, crystal symmetry and IPF direction
 IPF_map(ebsd, 'Ti-Hex', RD)
+IPF_map(ebsd, 'Titanium cubic', RD)
 
 %% grains IPF 
 
@@ -70,14 +58,13 @@ ebsd = clean_grains(ebsd, grains, 3);
 
 %Plotting a cubic map requires caluclating the grains first.
 [grains, ebsd.grainId, ebsd.mis2mean] = calcGrains(ebsd,'angle',10*degree);
->>>>>>> Stashed changes
 
 %%
 IPF_grains_map(grains, 'Ti-Hex', RD)
 IPF_grains_map(grains, 'Titanium cubic', RD)
 
 %% Smooth grains
-grains = smooth(grains,5)
+grains = smooth(grains,2)
 
 %%
 IPF_grains_map(grains, 'Ti-Hex', RD)

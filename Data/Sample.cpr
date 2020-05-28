@@ -1,32 +1,32 @@
 [General]
 Version=5.0
-Date=06/03/2019
-Time=14:23:29
-Description=Heating Run 1
+Date=21/08/2019
+Time=11:04:45
+Description=Before
 Author=AZtec
 JobMode=RegularGrid
 SampleSymmetry=
-ProjectFile=D:\users\Nick B\Heating Run 1\Heating Run 1.oip
+ProjectFile=D:\users\Nick B\Heating Run 4\Before\Before.oip
 Notes=
 ProjectNotes=
 
-Duration=0:2:51
-PerCycle=0.001532655
+Duration=0:5:0
+PerCycle=0.002080237
 
 [Job]
-Magnification=370
+Magnification=2535
 kV=20
-TiltAngle=70.0007499062771
+TiltAngle=70.0003749531386
 TiltAxis=0.00
-Coverage=80.84557
+Coverage=83.77493
 Device=Beam
 Automatic=True
-NoOfPoints=112042
-GridDistX=2
-GridDistY=2
-GridDist=2
-xCells=371
-yCells=302
+NoOfPoints=144400
+GridDistX=0.15
+GridDistY=0.15
+GridDist=0.15
+xCells=380
+yCells=380
 
 [SEMFields]
 DOEuler1=1.0412527943786
@@ -34,11 +34,11 @@ DOEuler2=100.916059176813
 DOEuler3=358.186581071793
 
 [StagePosition]
-XPos=1.17228
-YPos=17.33258
-ZPos=-0.10188
-RPos=161.733749389648
-TPos=0.000749906277107927
+XPos=0.53933
+YPos=17.43464
+ZPos=-0.00012
+RPos=-56.1598129272461
+TPos=0.000374953138553964
 ZValid=True
 
 [Acquisition Surface]
@@ -62,6 +62,22 @@ Field9=12
 Count=2
 
 [Phase1]
+StructureName=Ti-Hex
+Reference=[Titanhex v3.cry]
+Enabled=True
+a=2.9539999961853
+b=2.9539999961853
+c=4.72900009155273
+alpha=90
+beta=90
+gamma=120
+LaueGroup=9
+SpaceGroup=0
+ID1=
+ID2=
+NumberOfReflectors=50
+
+[Phase2]
 StructureName=Titanium cubic
 Reference=technique de l'ingenieur
 Enabled=True
@@ -76,22 +92,6 @@ SpaceGroup=229
 ID1=
 ID2=
 NumberOfReflectors=43
-
-[Phase2]
-StructureName=Ti-Hex
-Reference=[Titanhex v3.cry]
-Enabled=True
-a=2.9539999961853
-b=2.9539999961853
-c=4.72900009155273
-alpha=90
-beta=90
-gamma=120
-LaueGroup=9
-SpaceGroup=0
-ID1=
-ID2=
-NumberOfReflectors=38
 
 [EDX Windows]
 Count=0

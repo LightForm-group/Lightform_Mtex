@@ -1,6 +1,6 @@
 % plotting convention
-setMTEXpref('yAxisDirection','north');
-setMTEXpref('zAxisDirection','east');
+setMTEXpref('xAxisDirection','north');
+setMTEXpref('zAxisDirection','intoPlane');
 
 %% PF Cubic
 

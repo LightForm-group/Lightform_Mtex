@@ -1,6 +1,11 @@
 %% Import Script for EBSD Data
 
-%% Specify Crystal and Specimen Symmetries
+% This example script is written to demonstrate the importation of ebsd data
+% and subsequent texture analysis - using the Lightform MTEX repository. The script
+% has been written to work with the sample ebsd file included in the Data
+% folder.
+
+%% Specify Crystal Symmetries
 
 % crystal symmetry
 CS = {... 
@@ -26,61 +31,70 @@ fname = [pname 'Sample.cpr'];
 % create an EBSD variable containing the data
 ebsd = EBSD.load(fname,CS,'interface','crc',...
   'convertEuler2SpatialReferenceFrame');
-% ebsd = reduce(ebsd); % uncomment this to reduce the size of your file
 
-%% rotate the orientation data but not the spatial data
+%% Rotate the orientation data but not the spatial data
 
 rot=rotation('Euler', 90*degree, 0*degree, 0*degree);
 ebsd=rotate(ebsd,rot,'keepXY'); % 'keepXY' allows you to apply a rotation to your orientation data without changing the spatial data
+
+%% Define the vectors as directions
 
 RD = vector3d.X;
 TD = vector3d.Y;
 ND = vector3d.Z;
 
-%% ebsd IPF
+%% Plot IPF maps of the raw ebsd data
+
 % pass the following arguments: ebsd, crystal symmetry and IPF direction
 IPF_map(ebsd, 'Ti-Hex', RD)
 IPF_map(ebsd, 'Titanium cubic', RD)
 
-%% grains IPF 
+%% Grains - calculate a list of grains that contains new information about the data
 
-%Plotting a cubic map requires caluclating the grains first.
+% after the grains have been calculated, each ebsd data point will have an
+% associated grain id. Each grain in the list will be also possess new
+% attributes that did not exist before the calcGrains command was executed.
+
 [grains, ebsd.grainId, ebsd.mis2mean] = calcGrains(ebsd,'angle',10*degree);
 
-%%
+%% Plot the mean orientation of each grain in IPF colours
+
 IPF_grains_map(grains, 'Ti-Hex', RD)
 IPF_grains_map(grains, 'Titanium cubic', RD)
 
-%% Clean data
+%% Clean the data by removing grains of a specific size
+
+% pass the following arguments: ebsd, grains and grain size (in number of
+% pixels) to be removed from the ebsd data set
 ebsd = clean_grains(ebsd, grains, 3);
 
-%% grains IPF 
+%% Recalculate the list of grains from the cleaned ebsd data set 
 
 %Plotting a cubic map requires caluclating the grains first.
 [grains, ebsd.grainId, ebsd.mis2mean] = calcGrains(ebsd,'angle',10*degree);
 
-%%
+%% Plot the newly calculated "clean" grains 
 IPF_grains_map(grains, 'Ti-Hex', RD)
 IPF_grains_map(grains, 'Titanium cubic', RD)
 
-%% Smooth grains
+%% Smooth grain boundaries to remove stepped effect
 grains = smooth(grains,2)
 
-%%
+%% Plot the grains with smooth boundaries
 IPF_grains_map(grains, 'Ti-Hex', RD)
 IPF_grains_map(grains, 'Titanium cubic', RD)
 
 %% Pole Figure
-% plotting convention
-setMTEXpref('yAxisDirection','north');
-setMTEXpref('zAxisDirection','east');
+% set the plotting convention
+setMTEXpref('xAxisDirection','north');
+setMTEXpref('zAxisDirection','intoPlane');
 
 %% Plot PF Alpha
 
 figure();
 ori=ebsd('Ti-Hex').orientations;
 x=[Miller(0,0,0,1,ori.CS), Miller(1,0,-1,0,ori.CS), Miller(1,1,-2,0,ori.CS)]; % include hkil figures here
-plotPDF(ori,x,'antipodal', 'contourf', 0:1:10.0, 'minmax', 'colorRange',[0,10]); % plot with contouring
+plotPDF(ori,x,'antipodal', 'contourf', 1:2:10.0, 'minmax', 'colorRange',[0,10]); % plot with contouring
 mtexColorbar ('location','southOutSide','title','mrd'); % to move the colour bar to below and include a title
 
 %% PF Cubic
@@ -88,7 +102,7 @@ mtexColorbar ('location','southOutSide','title','mrd'); % to move the colour bar
 figure();
 ori=ebsd('Titanium cubic').orientations;
 x=[Miller(0,0,1,ori.CS), Miller(1,1,0,ori.CS), Miller(1,1,1,ori.CS)]; % include hkil figures here
-plotPDF(ori,x,'antipodal', 'contourf', 0:1:10.0, 'minmax', 'colorRange',[0,10]); % plot with contouring
+plotPDF(ori,x,'antipodal', 'contourf', 1:2:10.0, 'minmax', 'colorRange',[0,10]); % plot with contouring
 mtexColorbar ('location','southOutSide','title','mrd'); % to move the colour bar to below and include a title
 
 %% ODF

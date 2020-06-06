@@ -4,9 +4,9 @@ HALF_WIDTH = psi;
  
 % Plot ODF 
 figure();
-ori = ebsd('Titanium cubic').orientations;'kernel';psi;
+ori = ebsd('Titanium cubic').orientations;
 ori.SS = specimenSymmetry('orthorhombic');
-odf = calcDensity(ori);
+odf = calcDensity(ori,'kernel',psi);
 plot(odf,'phi2',45*degree,'antipodal','linewidth',1,'colorbar','cs','ss','minmax','contourf',0:1:10,'colorRange',[0,10]); 
 
 

@@ -12,11 +12,11 @@ pfs = [Miller(0,0,0,1,CS), Miller(1,1,-2,0,CS), Miller(1,0,-1,0,CS)];
 
 %%                                 *** Hex Orientation ***
 
-%% Define hex orientation that you want to visualise
+%% Define hex orientations that you want to visualise
 % by Euler
 % ori = orientation.byEuler(0*degree,0*degree,0*degree,CS)
 
-% or by Miller Indices
+%or by Miller Indices
 ori = orientation.byMiller([0,0,0,1],[1,0,-1,0],CS);
 
 %% Plot interactive hex crystal orientation schematic

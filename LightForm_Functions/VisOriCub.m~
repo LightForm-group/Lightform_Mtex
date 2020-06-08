@@ -1,0 +1,12 @@
+function VisOriCub(ori,CS)
+
+ODF_mil = calcDensity(ori);
+%%
+% plot 3D euler space
+figure();
+plot3d(ODF_mil); % to plot miller indices orientation change to (ori_cub_mil)
+
+%%
+figure();
+plot(ODF_mil,'phi2',45*degree);
+

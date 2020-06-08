@@ -4,7 +4,7 @@ setMTEXpref('xAxisDirection','north');
 setMTEXpref('zAxisDirection','intoPlane');
 
 %% Define crystal symmetry and shape
-CS = (crystalSymmetry('6/mmm', [2.954 2.954 4.729], 'X||a*', 'Y||b', 'Z||c*', 'mineral', 'Ti-Hex', 'color', 'cyan'))
+CS = (crystalSymmetry('6/mmm', [2.954 2.954 4.729], 'X||a*', 'Y||b', 'Z||c*', 'mineral', 'Ti-Hex', 'color', [0.55 0.7 0.5]))
 cShape = crystalShape.hex(CS)
 
 %% Define pole figures to plot

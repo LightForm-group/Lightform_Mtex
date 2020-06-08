@@ -4,7 +4,7 @@ setMTEXpref('xAxisDirection','north');
 setMTEXpref('zAxisDirection','intoPlane');
 
 %% Define crystal symmetry and shape
-CS = (crystalSymmetry('m-3m', [3.192 3.192 3.192], 'mineral', 'Titanium cubic', 'color', 'blue'));
+CS = (crystalSymmetry('m-3m', [3.192 3.192 3.192], 'mineral', 'Titanium cubic', 'color', [1 0.885 0.504]));
 cShape = crystalShape.cube(CS)
 
 %% Define pole figures to plot
@@ -17,7 +17,7 @@ pfs=[Miller(0,0,1,CS), Miller(1,1,0,CS), Miller(1,1,1,CS), Miller(1,1,2,CS)];
 % ori_cub = orientation.byEuler(0*degree,0*degree,0*degree,CS)
 
 % or by Miller 
-ori = orientation.byMiller([1,1,2],[1,1,0],CS)
+ori = orientation.byMiller([2,2,1],[-1,-1,4],CS)
 
 %% Plot interactive cubic crystal orientation schematic
 figure()
